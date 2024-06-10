@@ -1,0 +1,6 @@
+s1 = input()
+s2 = input()
+s1 = s1.lower()
+s2 = s2.lower()
+balanced = all(char in s2 for char in s1)
+print(balanced)
