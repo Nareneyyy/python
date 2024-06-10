@@ -1,0 +1,29 @@
+def count_pairs(activities, k):
+    activity_count = {}  # Dictionary to count occurrences of each activity count
+    unique_pairs = 0  # Initialize count of unique pairs
+
+    # Count occurrences of each activity count
+    for activity in activities:
+        activity_count[activity] = activity_count.get(activity, 0) + 1
+
+    # Count unique pairs with absolute difference k
+    for activity in activity_count:
+        # If k is 0, count all pairs of the same activity
+        if k == 0:
+            unique_pairs += activity_count[activity] * (activity_count[activity] - 1) // 2
+        # If k is not 0, check if activity + k exists and count pairs
+        elif activity + k in activity_count:
+            unique_pairs += activity_count[activity] * activity_count[activity + k]
+
+    return unique_pairs
+
+if __name__ == "__main__":
+    # Input
+    n = int(input())
+    activities = list(map(int, input().split()))
+    k = int(input())
+
+    # Output
+    result = count_pairs(activities, k)
+    print(result)
+
